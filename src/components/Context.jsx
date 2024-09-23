@@ -1,31 +1,51 @@
-import React, {Children, createContext, useState} from "react";
+import React, { createContext, useState } from 'react';
 
-const AppContext = createContext();
+// Create Context
+export const AppContext = createContext();
 
-const AppProvider = ({children}) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [items,setItems] = useState([])
+// AppProvider component to provide context to other components
+export const AppProvider = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Login status
+  const [items, setItems] = useState([]); // List of items
 
-    const login = () => setIsAuthenticated(true);
-    const signout = () => setIsAuthenticated(false);
+  // Login function
+  const login = () => {
+    setIsAuthenticated(true);
+  };
 
-    const addItem = (item) => {
-        setItems([...items,item]);
-    }
+  // Signout function
+  const signout = () => {
+    setIsAuthenticated(false);
+  };
 
-    const removeItem = (item) => {
-        setItems(items.filter(i => i!==item))
-    }
+  // Add item to list
+  const addItem = (item) => {
+    setItems([...items, item]);
+  };
 
-    const clearList = () =>{
-        setItems([])
-    }
+  // Remove item from list
+  const removeItem = (item) => {
+    setItems(items.filter(i => i !== item));
+  };
 
-    return(
-        <AppContext.Provider value={{isAuthenticated,items,login,signout,addItem,removeItem,clearList}}>
-            {children}
-        </AppContext.Provider>
-    )
-}
+  // Clear all items from list
+  const clearList = () => {
+    setItems([]);
+  };
 
-export {AppContext,AppProvider};
+  return (
+    <AppContext.Provider
+      value={{
+        isAuthenticated,
+        login,
+        signout,
+        items,
+        addItem,
+        removeItem,
+        clearList,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
+};
