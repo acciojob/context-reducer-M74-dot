@@ -3,7 +3,7 @@ import { AppContext, AppProvider } from "./Context";
 
 
 const App = () =>{
-    const {isAuthenticated,login,signout,addItem,removeItem,clearList} = useContext(AppContext)
+    const {isAuthenticated,items,login,signout,addItem,removeItem,clearList} = useContext(AppContext)
     const [inputValue,setInputValue] = useState("");
 
     const handleAdd = () =>{
@@ -46,9 +46,11 @@ const App = () =>{
 }
 
 const MainApp = () =>{
-    <AppProvider>
-        <App/>
-    </AppProvider>
+    return (
+        <AppProvider>
+            <App/>
+        </AppProvider>
+    )
 }
 
 export default MainApp;

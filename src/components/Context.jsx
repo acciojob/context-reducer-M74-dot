@@ -22,7 +22,7 @@ const AppProvider = ({children}) => {
     }
 
     return(
-        <AppContext.Provider value={{isAuthenticated,login,signout,addItem,removeItem,clearList}}>
+        <AppContext.Provider value={{isAuthenticated,items,login,signout,addItem,removeItem,clearList}}>
             {children}
         </AppContext.Provider>
     )
